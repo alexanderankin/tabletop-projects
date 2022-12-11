@@ -1,1 +1,3 @@
 rootProject.name = 'tabletop-projects'
+include 'implementations:gobblet'
+include 'initial-implementations'
