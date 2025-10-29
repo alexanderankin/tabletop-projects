@@ -1,0 +1,324 @@
+> Task :plugins:extractPluginRequests UP-TO-DATE
+> Task :plugins:generatePluginAdapters UP-TO-DATE
+> Task :plugins:compileJava UP-TO-DATE
+> Task :plugins:compileGroovy NO-SOURCE
+> Task :plugins:compileGroovyPlugins UP-TO-DATE
+> Task :plugins:pluginDescriptors UP-TO-DATE
+> Task :plugins:processResources UP-TO-DATE
+> Task :plugins:classes UP-TO-DATE
+> Task :plugins:jar UP-TO-DATE
+
+> Task :initial-implementations:dependencies
+
+------------------------------------------------------------
+Project ':initial-implementations'
+------------------------------------------------------------
+
+annotationProcessor - Annotation processors and their dependencies for source set 'main'.
++--- org.springframework.boot:spring-boot-dependencies:3.5.7
+|    \--- org.projectlombok:lombok:1.18.42 (c)
+\--- org.projectlombok:lombok -> 1.18.42
+
+compileClasspath - Compile classpath for source set 'main'.
++--- org.projectlombok:lombok -> 1.18.42
+\--- org.springframework.boot:spring-boot-dependencies:3.5.7
+     \--- org.projectlombok:lombok:1.18.42 (c)
+
+compileOnly - Compile-only dependencies for the 'main' feature. (n)
+\--- org.projectlombok:lombok (n)
+
+default - Configuration for default artifacts. (n)
+No dependencies
+
+implementation - Implementation dependencies for the 'main' feature. (n)
+\--- org.springframework.boot:spring-boot-dependencies:3.5.7 (n)
+
+mainSourceElements - List of source directories contained in the Main SourceSet. (n)
+No dependencies
+
+runtimeClasspath - Runtime classpath of source set 'main'.
+\--- org.springframework.boot:spring-boot-dependencies:3.5.7
+
+runtimeElements - Runtime elements for the 'main' feature. (n)
+No dependencies
+
+runtimeOnly - Runtime-only dependencies for the 'main' feature. (n)
+No dependencies
+
+testAnnotationProcessor - Annotation processors and their dependencies for source set 'test'.
+No dependencies
+
+testCompileClasspath - Compile classpath for source set 'test'.
++--- org.springframework.boot:spring-boot-dependencies:3.5.7
+|    +--- org.junit.jupiter:junit-jupiter:5.12.2 (c)
+|    +--- org.springframework.boot:spring-boot-starter-test:3.5.7 (c)
+|    +--- org.junit.jupiter:junit-jupiter-api:5.12.2 (c)
+|    +--- org.junit.jupiter:junit-jupiter-params:5.12.2 (c)
+|    +--- org.springframework.boot:spring-boot-starter:3.5.7 (c)
+|    +--- org.springframework.boot:spring-boot-test:3.5.7 (c)
+|    +--- org.springframework.boot:spring-boot-test-autoconfigure:3.5.7 (c)
+|    +--- com.jayway.jsonpath:json-path:2.9.0 (c)
+|    +--- jakarta.xml.bind:jakarta.xml.bind-api:4.0.4 (c)
+|    +--- net.minidev:json-smart:2.5.2 (c)
+|    +--- org.assertj:assertj-core:3.27.6 (c)
+|    +--- org.awaitility:awaitility:4.2.2 (c)
+|    +--- org.hamcrest:hamcrest:3.0 (c)
+|    +--- org.mockito:mockito-core:5.17.0 (c)
+|    +--- org.mockito:mockito-junit-jupiter:5.17.0 (c)
+|    +--- org.skyscreamer:jsonassert:1.5.3 (c)
+|    +--- org.springframework:spring-core:6.2.12 (c)
+|    +--- org.springframework:spring-test:6.2.12 (c)
+|    +--- org.xmlunit:xmlunit-core:2.10.4 (c)
+|    +--- org.junit.platform:junit-platform-commons:1.12.2 (c)
+|    +--- org.springframework.boot:spring-boot:3.5.7 (c)
+|    +--- org.springframework.boot:spring-boot-autoconfigure:3.5.7 (c)
+|    +--- org.springframework.boot:spring-boot-starter-logging:3.5.7 (c)
+|    +--- jakarta.annotation:jakarta.annotation-api:2.1.1 (c)
+|    +--- org.yaml:snakeyaml:2.4 (c)
+|    +--- jakarta.activation:jakarta.activation-api:2.1.4 (c)
+|    +--- net.bytebuddy:byte-buddy:1.17.8 (c)
+|    +--- net.bytebuddy:byte-buddy-agent:1.17.8 (c)
+|    +--- org.springframework:spring-jcl:6.2.12 (c)
+|    +--- org.springframework:spring-context:6.2.12 (c)
+|    +--- ch.qos.logback:logback-classic:1.5.20 (c)
+|    +--- org.apache.logging.log4j:log4j-to-slf4j:2.24.3 (c)
+|    +--- org.slf4j:jul-to-slf4j:2.0.17 (c)
+|    +--- org.springframework:spring-aop:6.2.12 (c)
+|    +--- org.springframework:spring-beans:6.2.12 (c)
+|    +--- org.springframework:spring-expression:6.2.12 (c)
+|    +--- io.micrometer:micrometer-observation:1.15.5 (c)
+|    +--- ch.qos.logback:logback-core:1.5.20 (c)
+|    +--- org.slf4j:slf4j-api:2.0.17 (c)
+|    +--- org.apache.logging.log4j:log4j-api:2.24.3 (c)
+|    \--- io.micrometer:micrometer-commons:1.15.5 (c)
++--- org.springframework.boot:spring-boot-starter-test -> 3.5.7
+|    +--- org.springframework.boot:spring-boot-starter:3.5.7
+|    |    +--- org.springframework.boot:spring-boot:3.5.7
+|    |    |    +--- org.springframework:spring-core:6.2.12
+|    |    |    |    \--- org.springframework:spring-jcl:6.2.12
+|    |    |    \--- org.springframework:spring-context:6.2.12
+|    |    |         +--- org.springframework:spring-aop:6.2.12
+|    |    |         |    +--- org.springframework:spring-beans:6.2.12
+|    |    |         |    |    \--- org.springframework:spring-core:6.2.12 (*)
+|    |    |         |    \--- org.springframework:spring-core:6.2.12 (*)
+|    |    |         +--- org.springframework:spring-beans:6.2.12 (*)
+|    |    |         +--- org.springframework:spring-core:6.2.12 (*)
+|    |    |         +--- org.springframework:spring-expression:6.2.12
+|    |    |         |    \--- org.springframework:spring-core:6.2.12 (*)
+|    |    |         \--- io.micrometer:micrometer-observation:1.14.12 -> 1.15.5
+|    |    |              \--- io.micrometer:micrometer-commons:1.15.5
+|    |    +--- org.springframework.boot:spring-boot-autoconfigure:3.5.7
+|    |    |    \--- org.springframework.boot:spring-boot:3.5.7 (*)
+|    |    +--- org.springframework.boot:spring-boot-starter-logging:3.5.7
+|    |    |    +--- ch.qos.logback:logback-classic:1.5.20
+|    |    |    |    +--- ch.qos.logback:logback-core:1.5.20
+|    |    |    |    \--- org.slf4j:slf4j-api:2.0.17
+|    |    |    +--- org.apache.logging.log4j:log4j-to-slf4j:2.24.3
+|    |    |    |    +--- org.apache.logging.log4j:log4j-api:2.24.3
+|    |    |    |    \--- org.slf4j:slf4j-api:2.0.16 -> 2.0.17
+|    |    |    \--- org.slf4j:jul-to-slf4j:2.0.17
+|    |    |         \--- org.slf4j:slf4j-api:2.0.17
+|    |    +--- jakarta.annotation:jakarta.annotation-api:2.1.1
+|    |    +--- org.springframework:spring-core:6.2.12 (*)
+|    |    \--- org.yaml:snakeyaml:2.4
+|    +--- org.springframework.boot:spring-boot-test:3.5.7
+|    |    +--- org.springframework.boot:spring-boot:3.5.7 (*)
+|    |    \--- org.springframework:spring-test:6.2.12
+|    |         \--- org.springframework:spring-core:6.2.12 (*)
+|    +--- org.springframework.boot:spring-boot-test-autoconfigure:3.5.7
+|    |    +--- org.springframework.boot:spring-boot:3.5.7 (*)
+|    |    +--- org.springframework.boot:spring-boot-test:3.5.7 (*)
+|    |    \--- org.springframework.boot:spring-boot-autoconfigure:3.5.7 (*)
+|    +--- com.jayway.jsonpath:json-path:2.9.0
+|    +--- jakarta.xml.bind:jakarta.xml.bind-api:4.0.4
+|    |    \--- jakarta.activation:jakarta.activation-api:2.1.4
+|    +--- net.minidev:json-smart:2.5.2
+|    |    \--- net.minidev:accessors-smart:2.5.2
+|    |         \--- org.ow2.asm:asm:9.7.1
+|    +--- org.assertj:assertj-core:3.27.6
+|    |    \--- net.bytebuddy:byte-buddy:1.17.7 -> 1.17.8
+|    +--- org.awaitility:awaitility:4.2.2
+|    |    \--- org.hamcrest:hamcrest:2.1 -> 3.0
+|    +--- org.hamcrest:hamcrest:3.0
+|    +--- org.junit.jupiter:junit-jupiter:5.12.2
+|    |    +--- org.junit:junit-bom:5.12.2
+|    |    |    +--- org.junit.jupiter:junit-jupiter:5.12.2 (c)
+|    |    |    +--- org.junit.jupiter:junit-jupiter-api:5.12.2 (c)
+|    |    |    +--- org.junit.jupiter:junit-jupiter-params:5.12.2 (c)
+|    |    |    \--- org.junit.platform:junit-platform-commons:1.12.2 (c)
+|    |    +--- org.junit.jupiter:junit-jupiter-api:5.12.2
+|    |    |    +--- org.junit:junit-bom:5.12.2 (*)
+|    |    |    +--- org.opentest4j:opentest4j:1.3.0
+|    |    |    +--- org.junit.platform:junit-platform-commons:1.12.2
+|    |    |    |    +--- org.junit:junit-bom:5.12.2 (*)
+|    |    |    |    \--- org.apiguardian:apiguardian-api:1.1.2
+|    |    |    \--- org.apiguardian:apiguardian-api:1.1.2
+|    |    \--- org.junit.jupiter:junit-jupiter-params:5.12.2
+|    |         +--- org.junit:junit-bom:5.12.2 (*)
+|    |         +--- org.junit.jupiter:junit-jupiter-api:5.12.2 (*)
+|    |         \--- org.apiguardian:apiguardian-api:1.1.2
+|    +--- org.mockito:mockito-core:5.17.0
+|    |    +--- net.bytebuddy:byte-buddy:1.15.11 -> 1.17.8
+|    |    \--- net.bytebuddy:byte-buddy-agent:1.15.11 -> 1.17.8
+|    +--- org.mockito:mockito-junit-jupiter:5.17.0
+|    |    \--- org.mockito:mockito-core:5.17.0 (*)
+|    +--- org.skyscreamer:jsonassert:1.5.3
+|    |    \--- com.vaadin.external.google:android-json:0.0.20131108.vaadin1
+|    +--- org.springframework:spring-core:6.2.12 (*)
+|    +--- org.springframework:spring-test:6.2.12 (*)
+|    \--- org.xmlunit:xmlunit-core:2.10.4
+\--- org.junit.jupiter:junit-jupiter:5.12.2 (*)
+
+testCompileOnly - Compile only dependencies for source set 'test'. (n)
+No dependencies
+
+testImplementation - Implementation only dependencies for source set 'test'. (n)
++--- org.springframework.boot:spring-boot-starter-test (n)
+\--- org.junit.jupiter:junit-jupiter:5.12.2 (n)
+
+testRuntimeClasspath - Runtime classpath of source set 'test'.
++--- org.springframework.boot:spring-boot-dependencies:3.5.7
+|    +--- org.junit.jupiter:junit-jupiter:5.12.2 (c)
+|    +--- org.springframework.boot:spring-boot-starter-test:3.5.7 (c)
+|    +--- org.junit.jupiter:junit-jupiter-api:5.12.2 (c)
+|    +--- org.junit.jupiter:junit-jupiter-params:5.12.2 (c)
+|    +--- org.junit.jupiter:junit-jupiter-engine:5.12.2 (c)
+|    +--- org.springframework.boot:spring-boot-starter:3.5.7 (c)
+|    +--- org.springframework.boot:spring-boot-test:3.5.7 (c)
+|    +--- org.springframework.boot:spring-boot-test-autoconfigure:3.5.7 (c)
+|    +--- com.jayway.jsonpath:json-path:2.9.0 (c)
+|    +--- jakarta.xml.bind:jakarta.xml.bind-api:4.0.4 (c)
+|    +--- net.minidev:json-smart:2.5.2 (c)
+|    +--- org.assertj:assertj-core:3.27.6 (c)
+|    +--- org.awaitility:awaitility:4.2.2 (c)
+|    +--- org.hamcrest:hamcrest:3.0 (c)
+|    +--- org.mockito:mockito-core:5.17.0 (c)
+|    +--- org.mockito:mockito-junit-jupiter:5.17.0 (c)
+|    +--- org.skyscreamer:jsonassert:1.5.3 (c)
+|    +--- org.springframework:spring-core:6.2.12 (c)
+|    +--- org.springframework:spring-test:6.2.12 (c)
+|    +--- org.xmlunit:xmlunit-core:2.10.4 (c)
+|    +--- org.junit.platform:junit-platform-commons:1.12.2 (c)
+|    +--- org.junit.platform:junit-platform-engine:1.12.2 (c)
+|    +--- org.springframework.boot:spring-boot:3.5.7 (c)
+|    +--- org.springframework.boot:spring-boot-autoconfigure:3.5.7 (c)
+|    +--- org.springframework.boot:spring-boot-starter-logging:3.5.7 (c)
+|    +--- jakarta.annotation:jakarta.annotation-api:2.1.1 (c)
+|    +--- org.yaml:snakeyaml:2.4 (c)
+|    +--- org.slf4j:slf4j-api:2.0.17 (c)
+|    +--- jakarta.activation:jakarta.activation-api:2.1.4 (c)
+|    +--- net.bytebuddy:byte-buddy:1.17.8 (c)
+|    +--- net.bytebuddy:byte-buddy-agent:1.17.8 (c)
+|    +--- org.springframework:spring-jcl:6.2.12 (c)
+|    +--- org.springframework:spring-context:6.2.12 (c)
+|    +--- ch.qos.logback:logback-classic:1.5.20 (c)
+|    +--- org.apache.logging.log4j:log4j-to-slf4j:2.24.3 (c)
+|    +--- org.slf4j:jul-to-slf4j:2.0.17 (c)
+|    +--- org.springframework:spring-aop:6.2.12 (c)
+|    +--- org.springframework:spring-beans:6.2.12 (c)
+|    +--- org.springframework:spring-expression:6.2.12 (c)
+|    +--- io.micrometer:micrometer-observation:1.15.5 (c)
+|    +--- ch.qos.logback:logback-core:1.5.20 (c)
+|    +--- org.apache.logging.log4j:log4j-api:2.24.3 (c)
+|    \--- io.micrometer:micrometer-commons:1.15.5 (c)
++--- org.springframework.boot:spring-boot-starter-test -> 3.5.7
+|    +--- org.springframework.boot:spring-boot-starter:3.5.7
+|    |    +--- org.springframework.boot:spring-boot:3.5.7
+|    |    |    +--- org.springframework:spring-core:6.2.12
+|    |    |    |    \--- org.springframework:spring-jcl:6.2.12
+|    |    |    \--- org.springframework:spring-context:6.2.12
+|    |    |         +--- org.springframework:spring-aop:6.2.12
+|    |    |         |    +--- org.springframework:spring-beans:6.2.12
+|    |    |         |    |    \--- org.springframework:spring-core:6.2.12 (*)
+|    |    |         |    \--- org.springframework:spring-core:6.2.12 (*)
+|    |    |         +--- org.springframework:spring-beans:6.2.12 (*)
+|    |    |         +--- org.springframework:spring-core:6.2.12 (*)
+|    |    |         +--- org.springframework:spring-expression:6.2.12
+|    |    |         |    \--- org.springframework:spring-core:6.2.12 (*)
+|    |    |         \--- io.micrometer:micrometer-observation:1.14.12 -> 1.15.5
+|    |    |              \--- io.micrometer:micrometer-commons:1.15.5
+|    |    +--- org.springframework.boot:spring-boot-autoconfigure:3.5.7
+|    |    |    \--- org.springframework.boot:spring-boot:3.5.7 (*)
+|    |    +--- org.springframework.boot:spring-boot-starter-logging:3.5.7
+|    |    |    +--- ch.qos.logback:logback-classic:1.5.20
+|    |    |    |    +--- ch.qos.logback:logback-core:1.5.20
+|    |    |    |    \--- org.slf4j:slf4j-api:2.0.17
+|    |    |    +--- org.apache.logging.log4j:log4j-to-slf4j:2.24.3
+|    |    |    |    +--- org.apache.logging.log4j:log4j-api:2.24.3
+|    |    |    |    \--- org.slf4j:slf4j-api:2.0.16 -> 2.0.17
+|    |    |    \--- org.slf4j:jul-to-slf4j:2.0.17
+|    |    |         \--- org.slf4j:slf4j-api:2.0.17
+|    |    +--- jakarta.annotation:jakarta.annotation-api:2.1.1
+|    |    +--- org.springframework:spring-core:6.2.12 (*)
+|    |    \--- org.yaml:snakeyaml:2.4
+|    +--- org.springframework.boot:spring-boot-test:3.5.7
+|    |    +--- org.springframework.boot:spring-boot:3.5.7 (*)
+|    |    \--- org.springframework:spring-test:6.2.12
+|    |         \--- org.springframework:spring-core:6.2.12 (*)
+|    +--- org.springframework.boot:spring-boot-test-autoconfigure:3.5.7
+|    |    +--- org.springframework.boot:spring-boot:3.5.7 (*)
+|    |    +--- org.springframework.boot:spring-boot-test:3.5.7 (*)
+|    |    \--- org.springframework.boot:spring-boot-autoconfigure:3.5.7 (*)
+|    +--- com.jayway.jsonpath:json-path:2.9.0
+|    |    +--- net.minidev:json-smart:2.5.0 -> 2.5.2
+|    |    |    \--- net.minidev:accessors-smart:2.5.2
+|    |    |         \--- org.ow2.asm:asm:9.7.1
+|    |    \--- org.slf4j:slf4j-api:2.0.11 -> 2.0.17
+|    +--- jakarta.xml.bind:jakarta.xml.bind-api:4.0.4
+|    |    \--- jakarta.activation:jakarta.activation-api:2.1.4
+|    +--- net.minidev:json-smart:2.5.2 (*)
+|    +--- org.assertj:assertj-core:3.27.6
+|    |    \--- net.bytebuddy:byte-buddy:1.17.7 -> 1.17.8
+|    +--- org.awaitility:awaitility:4.2.2
+|    |    \--- org.hamcrest:hamcrest:2.1 -> 3.0
+|    +--- org.hamcrest:hamcrest:3.0
+|    +--- org.junit.jupiter:junit-jupiter:5.12.2
+|    |    +--- org.junit:junit-bom:5.12.2
+|    |    |    +--- org.junit.jupiter:junit-jupiter:5.12.2 (c)
+|    |    |    +--- org.junit.jupiter:junit-jupiter-api:5.12.2 (c)
+|    |    |    +--- org.junit.jupiter:junit-jupiter-engine:5.12.2 (c)
+|    |    |    +--- org.junit.jupiter:junit-jupiter-params:5.12.2 (c)
+|    |    |    +--- org.junit.platform:junit-platform-commons:1.12.2 (c)
+|    |    |    \--- org.junit.platform:junit-platform-engine:1.12.2 (c)
+|    |    +--- org.junit.jupiter:junit-jupiter-api:5.12.2
+|    |    |    +--- org.junit:junit-bom:5.12.2 (*)
+|    |    |    +--- org.opentest4j:opentest4j:1.3.0
+|    |    |    \--- org.junit.platform:junit-platform-commons:1.12.2
+|    |    |         \--- org.junit:junit-bom:5.12.2 (*)
+|    |    +--- org.junit.jupiter:junit-jupiter-params:5.12.2
+|    |    |    +--- org.junit:junit-bom:5.12.2 (*)
+|    |    |    \--- org.junit.jupiter:junit-jupiter-api:5.12.2 (*)
+|    |    \--- org.junit.jupiter:junit-jupiter-engine:5.12.2
+|    |         +--- org.junit:junit-bom:5.12.2 (*)
+|    |         +--- org.junit.platform:junit-platform-engine:1.12.2
+|    |         |    +--- org.junit:junit-bom:5.12.2 (*)
+|    |         |    +--- org.opentest4j:opentest4j:1.3.0
+|    |         |    \--- org.junit.platform:junit-platform-commons:1.12.2 (*)
+|    |         \--- org.junit.jupiter:junit-jupiter-api:5.12.2 (*)
+|    +--- org.mockito:mockito-core:5.17.0
+|    |    +--- net.bytebuddy:byte-buddy:1.15.11 -> 1.17.8
+|    |    +--- net.bytebuddy:byte-buddy-agent:1.15.11 -> 1.17.8
+|    |    \--- org.objenesis:objenesis:3.3
+|    +--- org.mockito:mockito-junit-jupiter:5.17.0
+|    |    +--- org.mockito:mockito-core:5.17.0 (*)
+|    |    \--- org.junit.jupiter:junit-jupiter-api:5.11.4 -> 5.12.2 (*)
+|    +--- org.skyscreamer:jsonassert:1.5.3
+|    |    \--- com.vaadin.external.google:android-json:0.0.20131108.vaadin1
+|    +--- org.springframework:spring-core:6.2.12 (*)
+|    +--- org.springframework:spring-test:6.2.12 (*)
+|    \--- org.xmlunit:xmlunit-core:2.10.4
+\--- org.junit.jupiter:junit-jupiter:5.12.2 (*)
+
+testRuntimeOnly - Runtime only dependencies for source set 'test'. (n)
+No dependencies
+
+(c) - A dependency constraint, not a dependency. The dependency affected by the constraint occurs elsewhere in the tree.
+(*) - Indicates repeated occurrences of a transitive dependency subtree. Gradle expands transitive dependency subtrees only once per project; repeat occurrences only display the root of the subtree, followed by this annotation.
+
+(n) - A dependency or dependency configuration that cannot be resolved.
+
+A web-based, searchable dependency report is available by adding the --scan option.
+
+BUILD SUCCESSFUL in 652ms
+8 actionable tasks: 1 executed, 7 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.1.0/userguide/configuration_cache_enabling.html
