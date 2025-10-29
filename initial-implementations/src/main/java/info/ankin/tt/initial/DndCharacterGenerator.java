@@ -7,11 +7,11 @@ import lombok.Value;
 import lombok.experimental.Accessors;
 
 import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 class DndCharacterGenerator {
     Random random = new SecureRandom();
@@ -32,6 +32,55 @@ class DndCharacterGenerator {
                 .sort();
     }
 
+    public Map<Ability, Integer> genAbilityScores(SmallOrderedSet<Ability> abilityPriorities) {
+        MultipleRolls<MultipleRolls<Integer>> mr = this.rollGroups(6, 4, 7);
+
+        // drop each groups lowest
+        for (Roll roll : mr.getSorted()) {
+            ((Roll.MultipleRoll<?>) roll).getMr().dropLowest();
+        }
+
+        mr.resort();
+        mr.dropLowest();
+        var abScores = mr.getSorted().stream().map(Roll::value).toList();
+        var abPriorities = abilityPriorities.stream().toList();
+
+        return IntStream.range(0, abScores.size())
+                .mapToObj(i -> Map.entry(abPriorities.get(i), abScores.get(i)))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (a, b) -> a, LinkedHashMap::new));
+    }
+
+    public DndCharacter generateCharacter(DndCharacterClass characterClass,
+                                          DndCharacterType characterType,
+                                          DndCharacterAlignment alignment,
+                                          SmallOrderedSet<Ability> priorities) {
+        return new DndCharacter()
+                .setCharacterClass(characterClass)
+                .setCharacterType(characterType)
+                .setAlignment(alignment)
+                .setLevel(1)
+                .setAbilityScores(genAbilityScores(priorities))
+                .setHitPoints(classToHitDieSize(characterClass))
+                // .setArmorClass(null)
+                ;
+    }
+
+    private int classToHitDieSize(DndCharacterClass characterClass) {
+        return switch (characterClass) {
+            case BARBARIAN -> 0;
+            case BARD -> 0;
+            case CLERIC -> 8;
+            case DRUID -> 0;
+            case FIGHTER -> 0;
+            case MONK -> 0;
+            case PALADIN -> 0;
+            case RANGER -> 0;
+            case ROGUE -> 0;
+            case SORCERER -> 0;
+            case WIZARD -> 0;
+        };
+    }
+
     @RequiredArgsConstructor
     @Getter
     enum Ability {
@@ -43,6 +92,32 @@ class DndCharacterGenerator {
         CHA("Charisma"),
         ;
         private final String abilityName;
+    }
+
+    enum DndCharacterAlignment {
+        LAWFUL_GOOD, NEUTRAL_GOOD, CHAOTIC_GOOD, LAWFUL_NEUTRAL, NEUTRAL_NEUTRAL, CHAOTIC_NEUTRAL, LAWFUL_EVIL, NEUTRAL_EVIL, CHAOTIC_EVIL,
+    }
+
+    enum DndCharacterType {
+        HUMAN, DWARF, ELF, GNOME, HALF_ELF, HALF_ORC, HALFLING,
+    }
+
+    @RequiredArgsConstructor
+    @Getter
+    enum DndCharacterClass {
+        BARBARIAN("Bbn"),
+        BARD("Brd"),
+        CLERIC("Clr"),
+        DRUID("Drd"),
+        FIGHTER("Ftr"),
+        MONK("Mnk"),
+        PALADIN("Pal"),
+        RANGER("Rgr"),
+        ROGUE("Rog"),
+        SORCERER("Sor"),
+        WIZARD("Wiz"),
+        ;
+        private final String abbreviation;
     }
 
     sealed interface Roll extends Comparable<Roll> {
@@ -117,5 +192,81 @@ class DndCharacterGenerator {
         public int compareTo(MultipleRolls o) {
             return Integer.compare(this.sum(), o.sum());
         }
+    }
+
+    @SuppressWarnings("NullableProblems")
+    public static class SmallOrderedSet<T extends Comparable<T>> extends HashSet<T> {
+        final PriorityQueue<T> pq = new PriorityQueue<>();
+
+        @SuppressWarnings("unused")
+        public SmallOrderedSet() {
+        }
+
+        public SmallOrderedSet(Collection<? extends T> c) {
+            super(c.size());
+            addAll(c);
+        }
+
+        public static <T extends Comparable<T>> SmallOrderedSet<T> of(Collection<? extends T> c) {
+            return new SmallOrderedSet<>(c);
+        }
+
+        @Override
+        public boolean add(T t) {
+            boolean added = super.add(t);
+            if (added)
+                pq.add(t);
+            return added;
+        }
+
+        @Override
+        public boolean remove(Object o) {
+            boolean removed = super.remove(o);
+            if (removed)
+                pq.remove(o);
+            return removed;
+        }
+
+        @Override
+        public Iterator<T> iterator() {
+            return pq.iterator();
+        }
+
+        @Override
+        public Spliterator<T> spliterator() {
+            return Spliterators.spliterator(iterator(), size(), Spliterator.SIZED | Spliterator.DISTINCT);
+        }
+
+        @Override
+        public Object[] toArray() {
+            return pq.toArray();
+        }
+
+        @Override
+        public <T1> T1[] toArray(T1[] a) {
+            return pq.toArray(a);
+        }
+
+        @Override
+        public Stream<T> stream() {
+            return pq.stream();
+        }
+
+        @Override
+        public void forEach(Consumer<? super T> action) {
+            pq.forEach(action);
+        }
+    }
+
+    @Data
+    @Accessors(chain = true)
+    public static class DndCharacter {
+        DndCharacterClass characterClass;
+        DndCharacterType characterType;
+        DndCharacterAlignment alignment;
+        int level;
+        Map<Ability, Integer> abilityScores;
+        int hitPoints;
+        int armorClass;
     }
 }

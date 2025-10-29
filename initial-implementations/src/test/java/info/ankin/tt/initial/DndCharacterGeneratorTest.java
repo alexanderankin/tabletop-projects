@@ -1,7 +1,11 @@
 package info.ankin.tt.initial;
 
-import info.ankin.tt.initial.DndCharacterGenerator.MultipleRolls;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+import java.util.Map;
+
+import static info.ankin.tt.initial.DndCharacterGenerator.Ability.*;
 
 class DndCharacterGeneratorTest {
 
@@ -9,24 +13,7 @@ class DndCharacterGeneratorTest {
 
     @Test
     void generateSeventh() {
-        // var mr = generator.rollDice(2, 6);
-        // System.out.println(mr);
-
-        MultipleRolls<MultipleRolls<Integer>> mr = generator.rollGroups(6, 4, 7);
-
-        // System.out.println(mr);
-
-        // drop each groups lowest
-        for (DndCharacterGenerator.Roll roll : mr.getSorted()) {
-            ((DndCharacterGenerator.Roll.MultipleRoll<?>) roll).getMr().dropLowest();
-        }
-
-        mr.resort();
-        mr.dropLowest();
-
-        // System.out.println(mr);
-
-        var abScores = mr.getSorted().stream().map(DndCharacterGenerator.Roll::value).toList();
+        Map<DndCharacterGenerator.Ability, Integer> abScores = generator.genAbilityScores(DndCharacterGenerator.SmallOrderedSet.of(List.of(INT, WIS, CHA, DEX, CON, STR)));
         System.out.println(abScores);
     }
 
