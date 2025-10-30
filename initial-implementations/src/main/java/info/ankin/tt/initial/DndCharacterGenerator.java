@@ -8,10 +8,8 @@ import lombok.experimental.Accessors;
 
 import java.security.SecureRandom;
 import java.util.*;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 class DndCharacterGenerator {
     Random random = new SecureRandom();
@@ -32,7 +30,7 @@ class DndCharacterGenerator {
                 .sort();
     }
 
-    public Map<Ability, Integer> genAbilityScores(SmallOrderedSet<Ability> abilityPriorities) {
+    public Map<Ability, Integer> genAbilityScores(TreeSet<Ability> abilityPriorities) {
         MultipleRolls<MultipleRolls<Integer>> mr = this.rollGroups(6, 4, 7);
 
         // drop each groups lowest
@@ -53,7 +51,7 @@ class DndCharacterGenerator {
     public DndCharacter generateCharacter(DndCharacterClass characterClass,
                                           DndCharacterType characterType,
                                           DndCharacterAlignment alignment,
-                                          SmallOrderedSet<Ability> priorities) {
+                                          TreeSet<Ability> priorities) {
         return new DndCharacter()
                 .setCharacterClass(characterClass)
                 .setCharacterType(characterType)
@@ -191,70 +189,6 @@ class DndCharacterGenerator {
         @Override
         public int compareTo(MultipleRolls o) {
             return Integer.compare(this.sum(), o.sum());
-        }
-    }
-
-    @SuppressWarnings("NullableProblems")
-    public static class SmallOrderedSet<T extends Comparable<T>> extends HashSet<T> {
-        final PriorityQueue<T> pq = new PriorityQueue<>();
-
-        @SuppressWarnings("unused")
-        public SmallOrderedSet() {
-        }
-
-        public SmallOrderedSet(Collection<? extends T> c) {
-            super(c.size());
-            addAll(c);
-        }
-
-        public static <T extends Comparable<T>> SmallOrderedSet<T> of(Collection<? extends T> c) {
-            return new SmallOrderedSet<>(c);
-        }
-
-        @Override
-        public boolean add(T t) {
-            boolean added = super.add(t);
-            if (added)
-                pq.add(t);
-            return added;
-        }
-
-        @Override
-        public boolean remove(Object o) {
-            boolean removed = super.remove(o);
-            if (removed)
-                pq.remove(o);
-            return removed;
-        }
-
-        @Override
-        public Iterator<T> iterator() {
-            return pq.iterator();
-        }
-
-        @Override
-        public Spliterator<T> spliterator() {
-            return Spliterators.spliterator(iterator(), size(), Spliterator.SIZED | Spliterator.DISTINCT);
-        }
-
-        @Override
-        public Object[] toArray() {
-            return pq.toArray();
-        }
-
-        @Override
-        public <T1> T1[] toArray(T1[] a) {
-            return pq.toArray(a);
-        }
-
-        @Override
-        public Stream<T> stream() {
-            return pq.stream();
-        }
-
-        @Override
-        public void forEach(Consumer<? super T> action) {
-            pq.forEach(action);
         }
     }
 

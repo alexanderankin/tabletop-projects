@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Map;
+import java.util.TreeSet;
 
 import static info.ankin.tt.initial.DndCharacterGenerator.Ability.*;
 
@@ -13,8 +14,7 @@ class DndCharacterGeneratorTest {
 
     @Test
     void generateSeventh() {
-        Map<DndCharacterGenerator.Ability, Integer> abScores = generator.genAbilityScores(DndCharacterGenerator.SmallOrderedSet.of(List.of(INT, WIS, CHA, DEX, CON, STR)));
+        Map<DndCharacterGenerator.Ability, Integer> abScores = generator.genAbilityScores(new TreeSet<>(List.of(INT, WIS, CHA, DEX, CON, STR)));
         System.out.println(abScores);
     }
-
 }
