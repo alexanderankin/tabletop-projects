@@ -92,9 +92,13 @@ class DndCharacterGenerator {
         private final String abilityName;
     }
 
+    // @formatter:off
     enum DndCharacterAlignment {
-        LAWFUL_GOOD, NEUTRAL_GOOD, CHAOTIC_GOOD, LAWFUL_NEUTRAL, NEUTRAL_NEUTRAL, CHAOTIC_NEUTRAL, LAWFUL_EVIL, NEUTRAL_EVIL, CHAOTIC_EVIL,
+        LAWFUL_GOOD,    NEUTRAL_GOOD,    CHAOTIC_GOOD,
+        LAWFUL_NEUTRAL, NEUTRAL_NEUTRAL, CHAOTIC_NEUTRAL,
+        LAWFUL_EVIL,    NEUTRAL_EVIL,    CHAOTIC_EVIL,
     }
+    // @formatter:on
 
     enum DndCharacterType {
         HUMAN, DWARF, ELF, GNOME, HALF_ELF, HALF_ORC, HALFLING,

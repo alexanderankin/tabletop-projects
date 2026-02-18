@@ -1,0 +1,19 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-image: url("/dnd-village.jpg");
+  background-size: cover; /* fill viewport */
+  background-position: center; /* keep center visible */
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* optional */
+  min-height: 100vh;
+}
+
+/* Optional overlay for readability */
+.bg-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  min-height: 100vh;
+}
