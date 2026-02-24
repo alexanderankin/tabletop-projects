@@ -65,7 +65,7 @@ class DndCharacterGenerator {
                 ;
     }
 
-    private int classToHitDieSize(DndCharacterClass characterClass) {
+    static int classToHitDieSize(DndCharacterClass characterClass) {
         return switch (characterClass) {
             case BARBARIAN -> 0;
             case BARD -> 0;
@@ -81,9 +81,24 @@ class DndCharacterGenerator {
         };
     }
 
+    static int classToBaseSave(DndCharacterClass characterClass, SavingThrow savingThrow) {
+        //
+        return switch (characterClass) {
+            case BARBARIAN, FIGHTER, PALADIN, RANGER -> {
+                yield 1;
+            }
+            case BARD, CLERIC, DRUID, MONK, ROGUE -> {
+                yield 1;
+            }
+            case SORCERER, WIZARD -> {
+                yield 1;
+            }
+        };
+    }
+
     @RequiredArgsConstructor
     @Getter
-    enum Ability {
+    public enum Ability {
         STR("Strength"),
         DEX("Dexterity"),
         CON("Constitution"),
@@ -94,17 +109,28 @@ class DndCharacterGenerator {
         private final String abilityName;
     }
 
-    enum DndCharacterAlignment {
+    @RequiredArgsConstructor
+    @Getter
+    public enum SavingThrow {
+        FORTITUDE(Ability.CON),
+        REFLEX(Ability.DEX),
+        WILL(Ability.WIS),
+        ;
+
+        final Ability bonus;
+    }
+
+    public enum DndCharacterAlignment {
         LAWFUL_GOOD, NEUTRAL_GOOD, CHAOTIC_GOOD, LAWFUL_NEUTRAL, NEUTRAL_NEUTRAL, CHAOTIC_NEUTRAL, LAWFUL_EVIL, NEUTRAL_EVIL, CHAOTIC_EVIL,
     }
 
-    enum DndCharacterType {
+    public enum DndCharacterType {
         HUMAN, DWARF, ELF, GNOME, HALF_ELF, HALF_ORC, HALFLING,
     }
 
     @RequiredArgsConstructor
     @Getter
-    enum DndCharacterClass {
+    public enum DndCharacterClass {
         BARBARIAN("Bbn"),
         BARD("Brd"),
         CLERIC("Clr"),
@@ -267,6 +293,72 @@ class DndCharacterGenerator {
         int level;
         Map<Ability, Integer> abilityScores;
         int hitPoints;
-        int armorClass;
+        List<Item> items;
+
+
+        public int armorClass() {
+            return 10 + armorClassFromItems(items) + scoreToModifier(abilityScores.get(Ability.DEX));
+        }
+
+        public Map<SavingThrow, Integer> savingThrows() {
+            var result = new HashMap<SavingThrow, Integer>();
+            for (SavingThrow savingThrow : SavingThrow.values()) {
+                var total = class
+            }
+
+            return result;
+        }
+
+        static int armorClassFromItems(List<Item> items) {
+            int result = 0;
+            for (Item item : items) {
+                if (item instanceof Item.Armor armorItem) {
+                    result += armorItem.bonus();
+                }
+            }
+            return result;
+        }
+
+        // visible for testing
+        static int scoreToModifier(int integer) {
+            return (integer / 2) - 5;
+        }
+    }
+
+    public sealed interface Item {
+        @RequiredArgsConstructor
+        @Getter
+        enum BaseBookArmor {
+            // @formatter:off
+            Padded(         new Armor(1, 8, 0, 5, 30, 20, 10, Armor.Weight.LIGHT)),
+            Leather(        new Armor(2, 6, 0, 10, 30, 20, 15, Armor.Weight.LIGHT)),
+            Studded_leather(new Armor(3, 5, -1, 15, 30, 20, 15, Armor.Weight.LIGHT)),
+            chain_shirt(    new Armor(4, 4, -2, 20, 30, 20, 15, Armor.Weight.LIGHT)),
+            hide(           new Armor(3, 4, -3, 20, 20, 15, 25, Armor.Weight.MEDIUM)),
+            scale_mail(     new Armor(4, 3, -4, 25, 20, 15, 30, Armor.Weight.MEDIUM)),
+            chainmail(      new Armor(5, 2, -5, 30, 20, 15, 40, Armor.Weight.MEDIUM)),
+            breastplate(    new Armor(5, 3, -4, 25, 20, 15, 30, Armor.Weight.MEDIUM)),
+            split_mail(     new Armor(6, 0, -7, 40, 20, 15, 45, Armor.Weight.HEAVY)),
+            banded_mail(    new Armor(6, 1, -6, 35, 20, 15, 35, Armor.Weight.HEAVY)),
+            half_plate(     new Armor(7, 0, -7, 40, 20, 15, 50, Armor.Weight.HEAVY)),
+            full_plate(     new Armor(8, 1, -6, 35, 20, 15, 50, Armor.Weight.HEAVY)),
+            // @formatter:on
+            ;
+
+            final Armor armor;
+        }
+
+        record Armor(
+                int bonus,
+                int maxDexBonus,
+                int checkPenalty,
+                int spellFailurePercent,
+                int speed30,
+                int speed20,
+                int pounds,
+                Weight weight
+        ) implements Item {
+            public enum Weight { LIGHT, MEDIUM, HEAVY, }
+        }
     }
 }
